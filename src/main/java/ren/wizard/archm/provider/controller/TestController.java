@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
+import java.time.Duration;
+
 /**
  * @author uyangjie
  */
@@ -32,5 +34,16 @@ public class TestController {
     @GetMapping("/flux/echo/{word}/")
     public Flux<String> testFluxEcho(@PathVariable("word") String word) {
         return Flux.just(word);
+    }
+
+    @GetMapping("/flux/sleep/")
+    public Flux<String> testFluxSleep() {
+        return Flux.just("sleep").delayElements(Duration.ofMillis(500));
+    }
+
+    @GetMapping("/rest/sleep/")
+    public ResponseEntity<String> testSleep() throws InterruptedException {
+        Thread.sleep(500);
+        return new ResponseEntity<>("sleep", HttpStatus.OK);
     }
 }
