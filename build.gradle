@@ -30,6 +30,7 @@ ext {
 }
 
 dependencies {
+    compile project(":providercontract")
 	compile('org.springframework.boot:spring-boot-starter-web-services')
 	compile('org.springframework.boot:spring-boot-starter-webflux')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
